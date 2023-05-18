@@ -1,0 +1,76 @@
+.login-card {
+  font-size: 23px;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid pink;
+  box-shadow: 0px 0px 10px rgb(190, 69, 89);
+  border-radius: 5px;
+  justify-content: center;
+  justify-items: center;
+  display: grid;
+  gap: 20px;
+  padding: 30px;
+  margin: 70px;
+}
+
+.loginBttn {
+  font-size: 20px;
+  background-color: rgba(247, 152, 168, 0.451);
+  border-color: rgba(247, 152, 168, 0.451);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.loginForm {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+
+.loginForm input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+.login-form {
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+  justify-items: center;
+}
+
+h5 {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(147, 196, 64);
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 5px;
+  margin-top: 30px;
+}
+.registerdiv {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  margin-bottom: 0px;
+}
+
+.registerBttn {
+  font-size: 15px;
+  background-color: rgba(247, 152, 168, 0.451);
+  border-color: rgba(247, 152, 168, 0.451);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 35px;
+  padding-top: 20px;
+  font-family:fantasy;
+  margin-bottom: 0px;
+  margin-top: 100px;
+}

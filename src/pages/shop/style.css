@@ -1,0 +1,69 @@
+.flowersList {
+  padding-top: 20px;
+  width: 90%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center; 
+  text-align: center;
+  
+}
+
+.flowers {
+ list-style: none;
+ border: 1px solid black;
+border-radius: 15px;
+  width: 290px;
+  height: 500px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+li:hover {
+  cursor: pointer;
+}
+
+
+.flowerImg {
+  width: 250px;
+  height: 250px;
+}
+
+
+/* bouquets title */
+ h1 {
+  text-align: center;
+}
+.addToCartBttn,
+.addToWishlistBttn {
+  background-color: transparent;
+  border: 2px solid rgb(19, 19, 19);
+  min-width: 100px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.addToCartBttn:hover,
+.addToWishlistBttn:hover {
+  background-color: rgb(19, 19, 19);
+  color: white;
+  cursor: pointer;
+}
+
+
+p {
+  text-align: center;
+  font-size: larger;
+}
+
+.overall {
+  margin-top: 90px;
+}

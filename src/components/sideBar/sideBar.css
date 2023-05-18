@@ -1,0 +1,6 @@
+.options {
+    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    text-align: center;
+   
+}

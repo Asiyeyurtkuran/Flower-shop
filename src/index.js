@@ -1,13 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { BrowserRouter } from "react-router-dom";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ShopProvider } from './context/shopContext';
+import { AuthProvider } from './context/context';
+import { ModalProvider } from './context/modal';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <AuthProvider>
+        <ModalProvider>
+        <ShopProvider>
+          <App />
+        </ShopProvider>
+        </ModalProvider>
+      </AuthProvider>
+     
+     
+
+    </BrowserRouter>
+
   </React.StrictMode>
 );
 

@@ -1,0 +1,39 @@
+.allVariants {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+  scroll-snap-align: ;
+  
+}
+.variants {
+  width: 400px;
+  height: 250px;
+  opacity: 0.5;
+}
+.variants:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+.variantsName {
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.opt1,
+.opt2,
+.opt3 {
+    display: grid;
+    justify-content: center;
+    background-color: transparent;
+    
+}
+
+.opt1:hover,
+.opt2:hover,
+.opt3:hover {
+    cursor: pointer;
+    transition:transform 0.7s ease;
+    transform: scale(1.1, 1.1);
+
+}
