@@ -4,7 +4,7 @@ async function login(email, password) {
     return await post('login', { email, password }, false)
 }
 
-async function register(email, password, firstName, lastName,phone) {
+async function register(email, password, firstName, lastName, phone) {
     return await post('user', { email, password, firstName, lastName, phone }, false)
 }
 
@@ -43,6 +43,7 @@ async function request(method, endpoint, data, auth = true) {
         method
     }
 
+    console.log(data)
     if (method.toUpperCase() !== 'GET') {
         opts.body = JSON.stringify(data)
     }
@@ -63,6 +64,6 @@ export {
     //createProfile,
     get,
     post,
-    patch, 
+    patch,
     del
 }

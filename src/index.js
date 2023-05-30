@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ShopProvider } from './context/shopContext';
+//import { ShopProvider } from './context/shopContext';
 import { AuthProvider } from './context/context';
 import { ModalProvider } from './context/modal';
 
@@ -14,9 +14,9 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
         <ModalProvider>
-        <ShopProvider>
+        
           <App />
-        </ShopProvider>
+        
         </ModalProvider>
       </AuthProvider>
      

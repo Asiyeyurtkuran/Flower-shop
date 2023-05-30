@@ -16,6 +16,7 @@ import Vase from './pages/options/vase';
 import Bouquet from './pages/options/bouquet';
 
 
+
 function App() {
   return (
     <>
@@ -26,7 +27,7 @@ function App() {
           
           <Route path='/login' element={<AuthProvider><Login /></AuthProvider>} />
           <Route path='/register' element={<Register />} />
-          <Route path='/cart' element={<AuthProvider><Cart /></AuthProvider>} />
+          <Route path='/cart' element={<AuthProvider><Cart/></AuthProvider>} />
           <Route path='/wishList' element={<AuthProvider><WishList /></AuthProvider>} />
          
           <Route path='/profile' />

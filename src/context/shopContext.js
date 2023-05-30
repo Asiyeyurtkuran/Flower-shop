@@ -39,7 +39,7 @@ export const ShopProvider = (props) => {
         return totalAmount;
     };
 
-    const addToCart = (flower) => {
+    const addToCartAmount = (flower) => {
         setCartItems({ ...cartItems, [flower.id]: cartItems[flower.id] + 1 });
     };
 
@@ -60,7 +60,7 @@ export const ShopProvider = (props) => {
     const contextValue = {
         flowers,
         cartItems,
-        addToCart,
+        addToCartAmount,
         removeFromCart,
         getTotalAmount,
         updateItem,

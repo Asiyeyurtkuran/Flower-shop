@@ -16,8 +16,7 @@ const Login = () => {
     
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ email: "", password: "" });
-    const [error, setError] = useState(null);
- 
+    const [error, setError] = useState(null)
 
     const onChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

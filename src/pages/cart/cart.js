@@ -1,137 +1,118 @@
-import React, { useContext, useEffect } from 'react'
-import CartItem from './cartItem'
-import './cart.css'
-import { useNavigate } from "react-router-dom"
-import { get } from '../../service/apiClient.js';
+import React, { useContext } from "react";
+import { useLocation } from "react-router-dom";
+import { get } from "../../service/apiClient";
+import { useEffect, useState } from "react";
+import "./cart.css"
 
 
-import { ShopContext } from '../../context/shopContext.js';
+const Cart = () => {
+    const location = useLocation();
+    const [cartItems, setCartItems] = useState([]);
+    const [flowers, setFlowers] = useState([]);
 
 
-const Cart = (cartItems, flowers, setFlowers, setCartItems) => {
+    const removeFromCart = (flower) => {
+        setCartItems({ ...cartItems, [flower.id]: cartItems[flower.id] - 1 });
+    };
 
-  
 
 
-    const navigate = useNavigate();
+    const getTotalAmount = () => {
+        let totalAmount = 0;
+        for (const item in cartItems) {
+            if (cartItems[item] > 0) {
+                const itemInfo = flowers.find((flower) => flower.id === Number(item));
+                totalAmount += cartItems[item] * itemInfo.price;
+            }
+        }
+        return totalAmount;
+    };
+    useEffect(() => {
+        if (location.pathname === "/cart") {
+            const fetchData = async () => {
+                try {
+                    const cartRes = await get("cart");
+                    setCartItems(cartRes.data);
 
-     const handleClickForShopping = (e) => {
-         e.preventDefault();
-         console.log('clicked');
-         navigate('/shop')
-     }
+                    const flowersRes = await get("shop");
+                    setFlowers(flowersRes.data);
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
+            };
 
-     const handleClickForCheckout = (e) => {
-         e.preventDefault();
-         console.log('clicked');
-         navigate('/checkout')
-     }
+            fetchData();
+        }
+    }, [location]);
+
+    console.log("items", cartItems);
+
+    const getFlowerById = (flowerId) => {
+        return flowers?.find((flower) => flower.id === flowerId);
+    };
 
     return (
-        <div className='cart'>
-            <div className='cartTitle'>
-                <h1> Your Cart</h1>
+        <>
+            <div className="cart">
+                <h2>Cart</h2>
+
+                {cartItems && cartItems.length === 0 ? (
+                    <p>Your cart is empty.</p>
+                ) : (
+                    <ul>
+                        {cartItems?.map((item) => {
+                            const flower = getFlowerById(item.flowerId);
+
+                            return (
+                                <>
+                                    <li className="cartList" key={item.id}>
+                                        {flower ? (
+                                            <>
+                                                <div style={{ flex: 1 }}>
+                                                    <img
+                                                        className="flowerImg"
+                                                        src={require(`./../../assets/data/${flower.image}`)}
+                                                        alt={flower.name}
+                                                    />
+                                                </div>
+
+                                                <div style={{ flex: 2 }}>
+                                                    <p>{flower.name}</p>
+                                                </div>
+
+                                                <div style={{ flex: 1 }}>
+                                                    <p>Price: £{flower.price}</p>
+                                                </div>
+
+                                                <div className="removeDiv" style={{ flex: 2 }}>
+                                                    <button className="removeBttn" onClick={removeFromCart}> Remove From Cart </button>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <p>Flower not found</p>
+                                        )}
+                                    </li>
+
+                                </>
+                            );
+
+
+                        })}
+                    </ul>
+
+                )}
+                <div className="total">
+                    <div >
+                        <h3>Total:</h3>
+                    </div>
+                    <div>
+                        <h3> </h3>
+                    </div>
+                </div>
             </div>
+            <button className="checkoutBttn">Checkout</button>
+        </>
+    );
+};
 
-
- 
-            <div className='cartItem'>
-                {Object.keys(cartItems).map((item) => {
-                    if (cartItems[item] > 0) {
-                        return <CartItem key={item} data={item} />
-                    }
-                    return null;
-                })}
-
-            </div> 
-
-
-
-
-        </div>
-    )
-}
-
-export default Cart
-
-
-
-
-
-// import React, { useContext } from 'react';
-// import { ShopContext } from '../../context/shopContext.js';
-
-// const Cart = () => {
-//     const { cartItems, getTotalAmount, removeFromCart } = useContext(ShopContext);
-
-//     // Check if cartItems is null before rendering
-//     if (cartItems === null) {
-//         return <div>Loading...</div>;
-//     }
-
-//     const handleRemove = (flower) => {
-//         removeFromCart(flower);
-//     };
-
-//     return (
-//         <div>
-//             <h2>Cart</h2>
-//             {Object.keys(cartItems).map((itemId) => {
-//                 const itemInfo = cartItems[itemId];
-//                 return (
-//                     <div key={itemId}>
-//                         <span>{itemInfo.name}</span>
-//                         <span>Quantity: {itemInfo.quantity}</span>
-//                         <span>Price: {itemInfo.price}</span>
-//                         <button onClick={() => handleRemove(itemInfo)}>Remove</button>
-//                     </div>
-//                 );
-//             })}
-//             <div>
-//                 <h4>Total Amount: {getTotalAmount()}</h4>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Cart;
-
-
-
-// const Cart = ({ cartItems }) => {
-//     return (
-//         <div className="cart">
-//             <h2>Cart Items</h2>
-//             <ul>
-//                 {cartItems.map((item) => (
-//                     <li key={item.id}>
-//                         <p>{item.name}</p>
-//                         <p>£ {item.price}</p>
-//                     </li>
-//                 ))}
-//             </ul>
-//         </div>
-//     );
-// };
-
-// export default Cart;
-
-
-
-
-
-
-
-
-
-// import React from 'react'
-
-// const Cart = () => {
-//   return (
-//     <div>
-      
-//     </div>
-//   )
-// }
-
-// export default Cart;
+export default Cart;

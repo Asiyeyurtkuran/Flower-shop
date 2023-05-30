@@ -5,7 +5,7 @@
 // import WishItem from './wishItem';
 // import './wishlist.css'
 
-// const WishList = () => {
+const WishList = () => {
 //     // const { wishItems } = useContext(ShopContext);
     
   
@@ -31,6 +31,6 @@
 
 //     //     </div>
 //     // )
-// }
+}
 
-// export default WishList
+export default WishList

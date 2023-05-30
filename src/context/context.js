@@ -15,11 +15,11 @@ const AuthProvider = ({ children }) => {
     const location = useLocation();
     const [token, setToken] = useState(null);
     const [loggedInUserInfo, setLoggedInUserInfo] = useState({});
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+
 
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
-
         if (storedToken && !token) {
             setToken(storedToken);
             const { userId } = jwt_decode(storedToken);
@@ -37,6 +37,7 @@ const AuthProvider = ({ children }) => {
     }, [token, navigate, location.pathname]);
 
     const handleLogin = async (email, password) => {
+
         const res = await login(email, password);
         if (!res.data.token) {
             return res;
@@ -48,9 +49,12 @@ const AuthProvider = ({ children }) => {
         setIsLoggedIn(true); // Set isLoggedIn to true
         navigate("/");
         return res;
+        
     };
 
-    const handleLogout = () => {
+
+    const handleLogout = (e) => {
+        e.preventDefault();
         localStorage.removeItem("token");
         setToken(null);
         setIsLoggedIn(false); // Set isLoggedIn to false
@@ -69,6 +73,7 @@ const AuthProvider = ({ children }) => {
             return status;
         }
     };
+
 
     const value = {
         token,
